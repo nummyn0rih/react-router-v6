@@ -152,3 +152,16 @@ body {
 .card-content {
   font-size: 1.5em;
 }
+
+.sort {
+  display: flex;
+  justify-content: center;
+
+  font-size: 1.5em;
+}
+.sort button {
+  margin-left: 15px;
+  padding: 0 10px;
+
+  font-size: .9em;
+}
