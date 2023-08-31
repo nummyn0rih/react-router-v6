@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSort } from './hooks/useSort';
+import { useSort } from '../hooks/useSort';
 import episodes from '../data/episode.json';
 
 export default function Episodes() {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSort } from './hooks/useSort';
+import { useSort } from '../hooks/useSort';
 import characters from '../data/characters.json';
 
 export default function Characters() {
