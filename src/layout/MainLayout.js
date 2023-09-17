@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import Login from '../components/Login';
 
@@ -20,7 +20,9 @@ export default function MainLayout() {
         </li>
         <Login />
       </ul>
-      <Outlet />
+      <Suspense fallback={<div>Загрузка ...</div>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 }

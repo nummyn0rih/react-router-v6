@@ -229,3 +229,14 @@ form {
   height: 100vh;
   font-size: 3em;
 }
+
+.elem-loading {
+  margin: 10px 0;
+  font-size: 1.5em;
+}
+
+.elem-error {
+  margin: 10px 0;
+  font-size: 1.5em;
+  color: #D72F2C;
+}

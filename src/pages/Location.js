@@ -1,21 +1,29 @@
-import React from 'react';
-import { Navigate, useParams } from 'react-router-dom';
-import locations from '../data/location.json';
+import React, { lazy } from 'react';
+import { useParams } from 'react-router-dom';
+import useGetElement from '../hooks/useGetElement';
+import getUrl from '../data/getUrl';
+
+const ErrorBoundary = lazy(() => import('../components/ErrorBoundary'));
 
 export default function Character() {
   const { id } = useParams();
-  const location = locations.find((el) => el.id.toString() === id);
+  const url = `${getUrl('locations')}/${id}`;
 
-  return location ? (
-    <div className='card'>
-      <div className='card-content'>
-        <h1>{location.name}</h1>
-        <hr />
-        <p>Тип: {location.type}</p>
-        <p>Измерение: {location.dimension}</p>
+  const { loading, error, element } = useGetElement(url);
+
+  return (
+    <ErrorBoundary>
+      <div className='card'>
+        <div className='card-content'>
+          <h1>{element.name}</h1>
+          <hr />
+          <p>Тип: {element.type}</p>
+          <p>Измерение: {element.dimension}</p>
+        </div>
       </div>
-    </div>
-  ) : (
-    <Navigate to='404' replace />
+
+      {loading && <div className='elem-loading'>Загрузка ...</div>}
+      {error && <div className='elem-error'>Ошибка</div>}
+    </ErrorBoundary>
   );
 }

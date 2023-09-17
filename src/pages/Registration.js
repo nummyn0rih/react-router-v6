@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Signup from '../components/Signup';
 import { useAuth } from '../context/AuthProvider';
+
+const ErrorBoundary = lazy(() => import('../components/ErrorBoundary'));
 
 export default function Registration() {
   const { signup } = useAuth();
@@ -23,7 +25,9 @@ export default function Registration() {
 
   return (
     <div className='form-container'>
-      <Signup handler={onSubmit} />
+      <ErrorBoundary>
+        <Signup handler={onSubmit} />
+      </ErrorBoundary>
     </div>
   );
 }

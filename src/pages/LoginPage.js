@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Signin from '../components/Signin';
 import { useAuth } from '../context/AuthProvider';
+
+const ErrorBoundary = lazy(() => import('../components/ErrorBoundary'));
 
 export default function LoginPage() {
   const { isError, signin } = useAuth();
@@ -23,13 +25,15 @@ export default function LoginPage() {
 
   return (
     <div className='form-container'>
-      {isError && (
-        <div className='error'>Неправильное имя пользователя или пароль</div>
-      )}
-      <Signin handler={onSubmit} />
-      <Link to='/registration'>
-        <button className='btn'>Зарегистрироваться</button>
-      </Link>
+      <ErrorBoundary>
+        {isError && (
+          <div className='error'>Неправильное имя пользователя или пароль</div>
+        )}
+        <Signin handler={onSubmit} />
+        <Link to='/registration'>
+          <button className='btn'>Зарегистрироваться</button>
+        </Link>
+      </ErrorBoundary>
     </div>
   );
 }
